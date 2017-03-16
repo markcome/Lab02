@@ -43,7 +43,7 @@ public class AlienController {
     
     @FXML
     void doTranslate(ActionEvent event) {
-    	    	
+    	//if(this.txtWord.)
     }
     
     
