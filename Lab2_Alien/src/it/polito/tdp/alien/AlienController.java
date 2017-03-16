@@ -20,7 +20,7 @@ public class AlienController {
 	
 	private String alienWord;
 	private String translation;
-	private Map<String, AlienDictionary> alienDictionary;
+	private Map<String, AlienDictionaryAdvanced> alienDictionary;
 	
 	
     @FXML
@@ -43,7 +43,7 @@ public class AlienController {
     	assert txtResult != null : "fx:id=\"txtResult\" was not injected: check your FXML file 'Alien.fxml'.";
     	assert btnTranslate != null : "fx:id=\"bntTranslate\" was not injected: check your FXML file 'Alien.fxml'.";
     	assert btnReset != null : "fx:id=\"btnReset\" was not injected: check your FXML file 'Alien.fxml'.";
-    	this.alienDictionary = new TreeMap<String, AlienDictionary>();
+    	this.alienDictionary = new TreeMap<String, AlienDictionaryAdvanced>();
     }
   
     
@@ -57,14 +57,14 @@ public class AlienController {
     		try{
     			if(array.length == 1 && this.checkLetters(array[0])){
     				//cerco traduzione
-    				this.txtResult.setText(this.alienDictionary.get(array[0].toLowerCase()).getTranslation());
+    				this.txtResult.setText(this.alienDictionary.get(array[0].toLowerCase()).getTranslations());
     			}else if(array.length == 2 && this.checkLetters(array[0]) && this.checkLetters(array[1])){
     				//aggiungo al dizionario
     				if(this.alienDictionary.get(array[0].toLowerCase()) != null){
-    					this.alienDictionary.get(array[0].toLowerCase()).updateTranslation(array[1].toLowerCase());
+    					this.alienDictionary.get(array[0].toLowerCase()).addTranslation(array[1].toLowerCase());
     					this.txtResult.setText("Vocabolo aggiornato");
     				}else{
-	    				this.alienDictionary.put(array[0].toLowerCase(), new AlienDictionary(array[0].toLowerCase(), array[1].toLowerCase()));
+	    				this.alienDictionary.put(array[0].toLowerCase(), new AlienDictionaryAdvanced(array[0].toLowerCase(), array[1].toLowerCase()));
 	    				this.txtResult.setText("Aggiunto a vocabolario");
     				}
     			}else{
